@@ -255,6 +255,21 @@
       margin-top: 3px;
     }
     .step-group.wide { grid-template-columns: 1fr 1fr 1fr; }
+    .pdf-link {
+      display: block;
+      margin-top: 14px;
+      padding: 8px 10px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.8rem;
+      color: #e0e0ff;
+      background: rgba(99, 102, 241, 0.18);
+      border: 1px solid rgba(99, 102, 241, 0.55);
+      border-radius: 6px;
+    }
+    .pdf-link:hover {
+      background: rgba(99, 102, 241, 0.35);
+    }
   </style>
 </head>
 <body>
@@ -311,6 +326,9 @@
       <span class="chip" style="background:#3b82f6"></span>$f(x,y)-f(0,0)>0$　
       <span class="chip" style="background:#a855f7"></span>$f(x,y)-f(0,0)<0$
     </div>
+
+    <!-- 問題と解答（PDF）へのリンク: index.html と同じフォルダに PDF を置くこと -->
+    <a class="pdf-link" href="analysis2_w07_ex3-2.pdf" target="_blank" rel="noopener">📄 問題と解答（PDF）を開く</a>
   </div>
 
   <script>
@@ -394,7 +412,7 @@
       qplus:  x => [x, 0],
       qminus: x => [x, 1.5 * x * x],
       rho:    x => Math.hypot(x, 1.5 * x * x),
-      verdict1: '停留点は原点のみ．',
+      verdict1: '停留点は原点だけです．',
       steps: [
         {
           label: '① 停留点',
@@ -406,7 +424,7 @@
             tex('f_x=0') + ' かつ ' + tex('f_y=0') + ' ⇔ ' + tex('8x^3=6xy') + ' かつ ' + tex('2y=3x^2') + '.<br>' +
             'これを解いて ' + tex('(x,y)=(0,0)') + '.<br>' +
             '赤い曲線（' + tex('x=0') + ' と ' + tex('y=\\tfrac{4}{3}x^2') + '）と緑の曲線（' + tex('y=\\tfrac{3}{2}x^2') +
-            '）の交点は原点のみ．',
+            '）は，原点でしか交わりません．',
           readout: readoutStat
         },
         {
@@ -416,7 +434,7 @@
           card: () =>
             '<b>② ' + tex('A,B,C') + ' の値</b><br>' +
             tex('f_{xx}=-6y+24x^2,\\ f_{xy}=-6x,\\ f_{yy}=2') + ' より，<br>' +
-            tex('(0,0)') + ' のとき ' + tex('A=0,\\ B=0,\\ C=2,\\ B^2-AC=0') + ' → このままでは判定できない．',
+            tex('(0,0)') + ' のとき ' + tex('A=0,\\ B=0,\\ C=2,\\ B^2-AC=0') + ' → このままでは判定できません．',
           readout: readoutABC
         },
         {
@@ -425,10 +443,10 @@
           ctrl: { x: true },
           card: () =>
             '<b>③ ' + tex('x^2<y<2x^2') + ' の場合</b><br>' +
-            '頼れる定理・公式がなくなったので，定義にもとづいて ' + tex('f(x,y)-f(0,0)') + ' の符号を調べる．<br>' +
+            '頼れる定理・公式がなくなったので，定義にもとづいて ' + tex('f(x,y)-f(0,0)') + ' の符号を調べます．<br>' +
             tex('f(x,y)-f(0,0)=(y-x^2)(y-2x^2)') + '．<br>' +
             tex('(x,y)\\ne(0,0)') + ' なる ' + tex('(x,y)') + ' に対し，' + tex('x^2<y<2x^2') + ' のとき ' + tex('f(x,y)-f(0,0)<0') + '．<br>' +
-            '紫の領域（放物線 ' + tex('y=x^2') + ' と ' + tex('y=2x^2') + ' の間）．この領域は原点に接していて，原点にいくらでも近づく．下の「原点の近くを拡大」で確かめられる．',
+            '紫の領域（放物線 ' + tex('y=x^2') + ' と ' + tex('y=2x^2') + ' の間）です．この領域は原点に接していて，原点にいくらでも近づきます．下の「原点の近くを拡大」で確かめられます．',
           plots: () => [{
             tex: 'f\\left(t,\\tfrac{3}{2}t^2\\right)-f(0,0)=-\\tfrac{1}{4}t^4',
             fn: t => CFG.f(t, 1.5 * t * t) - f0, color: '#34d399',
@@ -446,7 +464,7 @@
           card: () =>
             '<b>④ ' + tex('y<x^2') + ' または ' + tex('2x^2<y') + ' の場合</b><br>' +
             'のとき ' + tex('f(x,y)-f(0,0)>0') + '．<br>' +
-            '青の領域（2 つの放物線の外側）．原点のどんな近くでもこの領域は空でない．',
+            '青の領域（2 つの放物線の外側）です．原点のすぐ近くにも，この領域があります．',
           plots: () => [{
             tex: 'f(t,0)-f(0,0)=2t^4',
             fn: t => CFG.f(t, 0) - f0, color: '#f87171',
@@ -463,10 +481,10 @@
           ctrl: { x: true },
           card: () =>
             '<b>⑤ ' + tex('(0,0)') + ' の近傍でまとめる</b><br>' +
-            '③・④ は，' + tex('f(x,y)-f(0,0)') + ' の値が ' + tex('(0,0)') + ' のどんな近傍においても正にも負にもなることを意味する．' +
-            'よって ' + tex('f(x,y)') + ' は ' + tex('(0,0)') + ' で極値をとらない．<br>' +
+            '③・④ は，' + tex('f(x,y)-f(0,0)') + ' の値が ' + tex('(0,0)') + ' のどんな近傍においても正にも負にもなることを意味します．' +
+            'よって ' + tex('f(x,y)') + ' は ' + tex('(0,0)') + ' で極値をとりません．<br>' +
             '一方，' + tex('(0,0)') + ' 以外に ' + tex('f_x=0') + ' かつ ' + tex('f_y=0') + ' を満たす ' + tex('(x,y)') + ' が存在せず，' +
-            'また ' + tex('f') + ' はすべての ' + tex('x,y') + ' に関し偏微分可能なので，' + tex('f(x,y)') + ' は極値をもたない．',
+            'また ' + tex('f') + ' はすべての ' + tex('x,y') + ' に関し偏微分可能なので，' + tex('f(x,y)') + ' は極値をもちません．',
           plots: () => [
             { tex: 'y=0:\\ f(t,0)-f(0,0)', fn: t => CFG.f(t, 0) - f0, color: '#f87171',
               range: () => 1.6 * Math.max(state.x, 0.05), mark: state.x },
@@ -488,9 +506,9 @@
             '原点を通る直線に沿って ' + tex('(x,y)=(t\\cos\\varphi,\\,t\\sin\\varphi)') + ' と動くとき，<br>' +
             tex('f=t^2(\\sin\\varphi-t\\cos^2\\varphi)(\\sin\\varphi-2t\\cos^2\\varphi)') + '．<br>' +
             tex('t') + ' が十分小さければ ' + tex('f\\approx t^2\\sin^2\\varphi>0') + '（' + tex('\\varphi=0^\\circ') + ' のときは ' + tex('2t^4>0') + '）．' +
-            'つまり<b>どの直線に沿っても，原点で極小に見える</b>．<br>' +
-            'ところが負の領域（紫）は放物線に挟まれた曲がった領域．どの直線もそこに入るが，原点から離れた所（' + tex('\\varphi') + ' を ' + tex('0^\\circ') + ' に近づけると，その位置は原点に近づく）．' +
-            'よって 2 変数関数としては原点で極値にならない．<b>「どの直線に沿っても極値 ⇒ 極値」の逆は成り立たない</b>．',
+            'つまり<b>どの直線に沿っても，原点で極小に見えます</b>．<br>' +
+            'ところが負の領域（紫）は放物線に挟まれた曲がった領域です．どの直線もそこに入りますが，原点から離れた所です（' + tex('\\varphi') + ' を ' + tex('0^\\circ') + ' に近づけると，その位置は原点に近づきます）．' +
+            'よって 2 変数関数としては原点で極値になりません．<b>「どの直線に沿っても極値 ⇒ 極値」の逆は成り立ちません</b>．',
           plots: () => {
             const ph = state.phiDeg * Math.PI / 180, c = Math.cos(ph), s = Math.sin(ph);
             const b = (Math.abs(c) > 1e-6 && s > 1e-6) ? s / (c * c) : 1;
@@ -512,9 +530,9 @@
               const a = s / (2 * c * c), b = s / (c * c);
               h += '<div class="row">この直線上で ' + tex('f<f(0,0)') + ' となる区間：' + tex('t\\in(' + fmt(a) + ',\\,' + fmt(b) + ')') + badge('dn', '負') + '</div>';
             } else {
-              h += '<div class="row">この直線上では ' + tex('f<f(0,0)') + ' となる所はない．</div>';
+              h += '<div class="row">この直線上では ' + tex('f<f(0,0)') + ' となる所はありません．</div>';
             }
-            h += '<div class="verdict">どの直線に沿っても原点で極小に見えるが，<b>(0,0) は極値ではない</b>．</div>';
+            h += '<div class="verdict">どの直線に沿っても原点で極小に見えますが，<b>(0,0) は極値ではありません</b>．</div>';
             return h;
           }
         }
@@ -548,7 +566,7 @@
       h += '<div class="row">' + tex('B^2-AC=' + fmt(D) + '\\ (' + sg + ')') + '</div>';
       let v = '';
       if (Math.abs(D) < 1e-9) {
-        v = tex('B^2-AC=0') + ' なので，<b>このままでは判定できない</b>．③ 以降で定義にもとづいて調べる．';
+        v = tex('B^2-AC=0') + ' なので，<b>このままでは判定できません</b>．③ 以降で定義にもとづいて調べます．';
       } else if (D < 0 && A > 0) {
         v = tex('A>0,\\ B^2-AC<0') + ' より，<b>極小値 ' + tex('f' + sp0.coord + '=' + fmt(CFG.f(sp0.x, sp0.y))) + '</b>';
       } else if (D < 0 && A < 0) {
